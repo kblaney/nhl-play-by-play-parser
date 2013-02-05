@@ -10,6 +10,6 @@ final class GameNumToPlayByPlayDocumentFunction implements GameNumToDocumentFunc
   public Document getDocument(final int gameNum) throws IOException
   {
     final String url = new GameNumToPlayByPlayUrlFunction().getUrl(gameNum);
-    return Jsoup.connect(url).timeout(0).get();
+    return Jsoup.connect(url).timeout(0).maxBodySize(0).get();
   }
 }
