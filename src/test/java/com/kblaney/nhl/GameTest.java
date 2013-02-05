@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public final class GameTest
 {
-  private String gameNum;
+  private int gameNum;
   private Team homeTeam;
   private Team roadTeam;
   private Game game;
@@ -14,7 +14,7 @@ public final class GameTest
   @Before
   public void setUp()
   {
-    gameNum = "GAME_NUM";
+    gameNum = 123;
     homeTeam = Team.ANAHEIM;
     roadTeam = Team.VANCOUVER;
     game = new Game(gameNum, homeTeam, roadTeam);

@@ -2,18 +2,18 @@ package com.kblaney.nhl;
 
 public final class Game
 {
-  private final String gameNum;
+  private final int gameNum;
   private final Team homeTeam;
   private final Team roadTeam;
 
-  public Game(final String gameNum, final Team homeTeam, final Team roadTeam)
+  public Game(final int gameNum, final Team homeTeam, final Team roadTeam)
   {
     this.gameNum = gameNum;
     this.homeTeam = homeTeam;
     this.roadTeam = roadTeam;
   }
 
-  public String getGameNum()
+  public int getGameNum()
   {
     return gameNum;
   }
