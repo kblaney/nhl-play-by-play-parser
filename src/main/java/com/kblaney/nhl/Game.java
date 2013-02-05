@@ -1,16 +1,19 @@
 package com.kblaney.nhl;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 public final class Game
 {
   private final int gameNum;
-  private final Team homeTeam;
   private final Team roadTeam;
+  private final Team homeTeam;
 
-  public Game(final int gameNum, final Team homeTeam, final Team roadTeam)
+  public Game(final int gameNum, final Team roadTeam, final Team homeTeam)
   {
     this.gameNum = gameNum;
-    this.homeTeam = homeTeam;
     this.roadTeam = roadTeam;
+    this.homeTeam = homeTeam;
   }
 
   public int getGameNum()
@@ -18,13 +21,30 @@ public final class Game
     return gameNum;
   }
 
+  public Team getRoadTeam()
+  {
+    return roadTeam;
+  }
+
   public Team getHomeTeam()
   {
     return homeTeam;
   }
 
-  public Team getRoadTeam()
+  @Override
+  public boolean equals(final Object thatObject)
   {
-    return roadTeam;
+    if (!(thatObject instanceof Game))
+    {
+      return false;
+    }
+    final Game that = (Game) thatObject;
+    return new EqualsBuilder().append(gameNum, that.gameNum).append(roadTeam, that.roadTeam).append(homeTeam, that.homeTeam).isEquals();
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return new HashCodeBuilder().append(gameNum).append(roadTeam).append(homeTeam).toHashCode();
   }
 }
