@@ -4,14 +4,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public final class GameNumToPlayByPlayUrlFunctionImplTest
+public final class GameNumToPlayByPlayUrlFunctionTest
 {
-  private GameNumToPlayByPlayUrlFunction function;
+  private GameNumToUrlFunction function;
 
   @Before
   public void setUp()
   {
-    function = new GameNumToPlayByPlayUrlFunctionImpl();
+    function = new GameNumToPlayByPlayUrlFunction();
   }
 
   @Test
