@@ -1,8 +1,6 @@
 package com.kblaney.nhl;
 
 import static org.junit.Assert.*;
-import java.io.File;
-import org.apache.commons.io.Charsets;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
@@ -57,22 +55,15 @@ public final class DocumentToGameNumFunctionImplTest
   public void getGameNum_SingleDigitGameNum() throws Exception
   {
     int gameNum = 1;
-    final Document document = getDocumentForGameNum(gameNum);
+    final Document document = Documents.getDocumentForGameNum(gameNum);
     assertEquals(gameNum, function.getGameNum(document));
-  }
-
-  private Document getDocumentForGameNum(final int gameNum) throws Exception
-  {
-    final String resource = String.format("/play-by-play-game%04d.htm", gameNum);
-    final File file = new File(getClass().getResource(resource).toURI());
-    return Jsoup.parse(file, Charsets.UTF_8.name());
   }
 
   @Test
   public void getGameNum_TwoDigitGameNum() throws Exception
   {
     int gameNum = 13;
-    final Document document = getDocumentForGameNum(gameNum);
+    final Document document = Documents.getDocumentForGameNum(gameNum);
     assertEquals(gameNum, function.getGameNum(document));
   }
 
@@ -80,7 +71,7 @@ public final class DocumentToGameNumFunctionImplTest
   public void getGameNum_ThreeDigitGameNum() throws Exception
   {
     int gameNum = 121;
-    final Document document = getDocumentForGameNum(gameNum);
+    final Document document = Documents.getDocumentForGameNum(gameNum);
     assertEquals(gameNum, function.getGameNum(document));
   }
 }
