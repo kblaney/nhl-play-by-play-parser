@@ -31,6 +31,6 @@ public enum GameEventType
         return gameEventType;
       }
     }
-    throw new IllegalArgumentException("Unknown short form:" + shortForm);
+    throw new IllegalArgumentException("Unknown game event short form:" + shortForm);
   }
 }
