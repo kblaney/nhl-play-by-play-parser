@@ -1,15 +1,14 @@
 package com.kblaney.nhl;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 import org.junit.Before;
-import org.joda.time.Duration;
+import org.junit.Test;
 
 public final class GoalTest
 {
   private int gameNum;
   private int period;
-  private Duration elapsedTimeInPeriod;
+  private int numSecondsIntoPeriod;
   private Team scoringTeam;
   private Goal goal;
 
@@ -18,9 +17,9 @@ public final class GoalTest
   {
     gameNum = 2;
     period = 3;
-    elapsedTimeInPeriod = Duration.standardMinutes(4);
+    numSecondsIntoPeriod = 334;
     scoringTeam = Team.BUFFALO;
-    goal = new Goal(gameNum, period, elapsedTimeInPeriod, scoringTeam);
+    goal = new Goal(gameNum, period, numSecondsIntoPeriod, scoringTeam);
   }
 
   @Test
@@ -42,9 +41,9 @@ public final class GoalTest
   }
 
   @Test
-  public void getElapsedTimeInPeriod()
+  public void getNumSecondsIntoPeriod()
   {
-    assertEquals(elapsedTimeInPeriod, goal.getElapsedTimeInPeriod());
+    assertEquals(numSecondsIntoPeriod, goal.getNumSecondsIntoPeriod());
   }
 
   @Test

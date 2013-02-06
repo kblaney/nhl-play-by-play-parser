@@ -1,15 +1,14 @@
 package com.kblaney.nhl;
 
 import static org.junit.Assert.*;
-import org.junit.Test;
 import org.junit.Before;
-import org.joda.time.Duration;
+import org.junit.Test;
 
 public final class FaceOffTest
 {
   private int gameNum;
   private int period;
-  private Duration elapsedTimeInPeriod;
+  private int numSecondsIntoPeriod;
   private FaceOffLocation location;
   private Team defensiveTeam;
   private Team winningTeam;
@@ -20,11 +19,11 @@ public final class FaceOffTest
   {
     gameNum = 2;
     period = 3;
-    elapsedTimeInPeriod = Duration.standardMinutes(4);
+    numSecondsIntoPeriod = 129;
     location = FaceOffLocation.DEFENSIVE_ZONE;
     defensiveTeam = Team.ANAHEIM;
     winningTeam = Team.VANCOUVER;
-    faceOff = new FaceOff(gameNum, period, elapsedTimeInPeriod, location, defensiveTeam, winningTeam);
+    faceOff = new FaceOff(gameNum, period, numSecondsIntoPeriod, location, defensiveTeam, winningTeam);
   }
 
   @Test
@@ -46,9 +45,9 @@ public final class FaceOffTest
   }
 
   @Test
-  public void getElapsedTimeInPeriod()
+  public void getNumSecondsIntoPeriod()
   {
-    assertEquals(elapsedTimeInPeriod, faceOff.getElapsedTimeInPeriod());
+    assertEquals(numSecondsIntoPeriod, faceOff.getNumSecondsIntoPeriod());
   }
 
   @Test

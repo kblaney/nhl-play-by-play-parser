@@ -1,21 +1,19 @@
 package com.kblaney.nhl;
 
-import org.joda.time.Duration;
-
 public abstract class AbstractGameEvent implements GameEvent
 {
   private final int gameNum;
   private final GameEventType type;
   private final int period;
-  private final Duration elapsedTimeInPeriod;
+  private final int numSecondsIntoPeriod;
 
   public AbstractGameEvent(final int gameNum, final GameEventType type, final int period,
-        final Duration elapsedTimeInPeriod)
+        final int numSecondsIntoPeriod)
   {
     this.gameNum = gameNum;
     this.type = type;
     this.period = period;
-    this.elapsedTimeInPeriod = elapsedTimeInPeriod;
+    this.numSecondsIntoPeriod = numSecondsIntoPeriod;
   }
 
   public final int getGameNum()
@@ -33,8 +31,8 @@ public abstract class AbstractGameEvent implements GameEvent
     return period;
   }
 
-  public final Duration getElapsedTimeInPeriod()
+  public final int getNumSecondsIntoPeriod()
   {
-    return elapsedTimeInPeriod;
+    return numSecondsIntoPeriod;
   }
 }

@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.joda.time.Duration;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -37,9 +36,9 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
   private Goal getGoal(final Element goalTableRow, final int gameNum)
   {
     final int period = getPeriod(goalTableRow);
-    final Duration elapsedTimeInPeriod = getElapsedTimeInPeriod(goalTableRow);
+    final int numSecondsIntoPeriod = getNumSecondsIntoPeriod(goalTableRow);
     final Team scoringTeam = getScoringTeam(goalTableRow);
-    return new Goal(gameNum, period, elapsedTimeInPeriod, scoringTeam);
+    return new Goal(gameNum, period, numSecondsIntoPeriod, scoringTeam);
   }
 
   private int getPeriod(final Element goalTableRow)
@@ -48,7 +47,7 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
     return Integer.parseInt(cellText);
   }
 
-  private Duration getElapsedTimeInPeriod(final Element goalTableRow)
+  private int getNumSecondsIntoPeriod(final Element goalTableRow)
   {
     final String cellText = goalTableRow.select("td:eq(3)").first().text();
     final Pattern pattern = Pattern.compile("(\\d+):(\\d+)");
@@ -57,7 +56,7 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
     {
       final int numMinutes = Integer.parseInt(matcher.group(1));
       final int numSeconds = Integer.parseInt(matcher.group(2));
-      return Duration.standardMinutes(numMinutes).plus(Duration.standardSeconds(numSeconds));
+      return (numMinutes * 60) + numSeconds;
     }
     throw new IllegalArgumentException("Can't find elapsed time in period:" + goalTableRow);
   }
