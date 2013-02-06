@@ -1,5 +1,8 @@
 package com.kblaney.nhl;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public final class FaceOff extends AbstractGameEvent implements GameEvent
 {
   private final FaceOffLocation location;
@@ -21,5 +24,23 @@ public final class FaceOff extends AbstractGameEvent implements GameEvent
   public Team getWinningTeam()
   {
     return winningTeam;
+  }
+
+  @Override
+  public boolean equals(final Object thatObject)
+  {
+    if (!(thatObject instanceof FaceOff))
+    {
+      return false;
+    }
+    final FaceOff that = (FaceOff) thatObject;
+    return new EqualsBuilder().appendSuper(super.equals(that)).append(location, that.location)
+          .append(winningTeam, that.winningTeam).isEquals();
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return new HashCodeBuilder().appendSuper(super.hashCode()).append(location).append(winningTeam).toHashCode();
   }
 }
