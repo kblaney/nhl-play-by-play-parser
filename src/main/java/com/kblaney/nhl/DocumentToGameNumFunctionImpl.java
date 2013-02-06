@@ -16,7 +16,7 @@ public class DocumentToGameNumFunctionImpl implements DocumentToGameNumFunction
 
   private String getGameNumElementText(final Document document)
   {
-    final Elements gameNumElements = document.select("table[id=GameInfo] td:matchesOwn(^Game)");
+    final Elements gameNumElements = document.select("table[id=GameInfo] td:matchesOwn(^(Game|Match/Game))");
     if (gameNumElements.isEmpty())
     {
       throw new IllegalArgumentException("Can't find game num element:" + document);

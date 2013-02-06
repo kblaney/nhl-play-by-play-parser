@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 
 public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
 {
-  private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
+  private final TableRowToGameEventFunction<Goal> tableRowtoGoalFunction = new TableRowToGoalFunction();
 
   @Override
   public List<Goal> getGoals(final Document document, final int gameNum)
@@ -35,24 +35,6 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
 
   private Goal getGoal(final Element goalTableRow, final int gameNum)
   {
-    final int period = getPeriod(goalTableRow);
-    final int numSecondsIntoPeriod = getNumSecondsIntoPeriod(goalTableRow);
-    final Team scoringTeam = getScoringTeam(goalTableRow);
-    return new Goal(gameNum, period, numSecondsIntoPeriod, scoringTeam);
-  }
-
-  private int getPeriod(final Element goalTableRow)
-  {
-    return tableRowParser.getPeriod(goalTableRow);
-  }
-
-  private int getNumSecondsIntoPeriod(final Element goalTableRow)
-  {
-    return tableRowParser.getNumSecondsIntoPeriod(goalTableRow);
-  }
-
-  private Team getScoringTeam(final Element goalTableRow)
-  {
-    return tableRowParser.getTeam(goalTableRow);
+    return tableRowtoGoalFunction.getGameEvent(goalTableRow, gameNum);
   }
 }

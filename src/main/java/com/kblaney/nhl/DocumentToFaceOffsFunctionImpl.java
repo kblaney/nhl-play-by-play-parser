@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 
 public class DocumentToFaceOffsFunctionImpl implements DocumentToFaceOffsFunction
 {
-  private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
+  private final TableRowToGameEventFunction<FaceOff> tableRowToFaceOffFunction = new TableRowToFaceOffFunction();
 
   @Override
   public List<FaceOff> getFaceOffs(final Document document, final int gameNum)
@@ -35,42 +35,6 @@ public class DocumentToFaceOffsFunctionImpl implements DocumentToFaceOffsFunctio
 
   private FaceOff getFaceOff(final Element faceOffTableRow, final int gameNum)
   {
-    final int period = getPeriod(faceOffTableRow);
-    final int numSecondsIntoPeriod = getNumSecondsIntoPeriod(faceOffTableRow);
-    final FaceOffLocation location = getFaceOffLocation(faceOffTableRow);
-    final Team winningTeam = getWinningTeam(faceOffTableRow);
-    return new FaceOff(gameNum, period, numSecondsIntoPeriod, location, winningTeam);
-  }
-
-  private int getPeriod(final Element faceOffTableRow)
-  {
-    return tableRowParser.getPeriod(faceOffTableRow);
-  }
-
-  private int getNumSecondsIntoPeriod(final Element faceOffTableRow)
-  {
-    return tableRowParser.getNumSecondsIntoPeriod(faceOffTableRow);
-  }
-
-  private FaceOffLocation getFaceOffLocation(final Element faceOffTableRow)
-  {
-    if (faceOffTableRow.text().contains("won Neu. Zone"))
-    {
-      return FaceOffLocation.NEUTRAL_ZONE;
-    }
-    else if (faceOffTableRow.text().contains("won Def. Zone"))
-    {
-      return FaceOffLocation.DEFENSIVE_ZONE;
-    }
-    else if (faceOffTableRow.text().contains("won Off. Zone"))
-    {
-      return FaceOffLocation.OFFENSIVE_ZONE;
-    }
-    throw new IllegalArgumentException("Can't find face off location:" + faceOffTableRow);
-  }
-
-  private Team getWinningTeam(final Element faceOffTableRow)
-  {
-    return tableRowParser.getTeam(faceOffTableRow);
+    return tableRowToFaceOffFunction.getGameEvent(faceOffTableRow, gameNum);
   }
 }

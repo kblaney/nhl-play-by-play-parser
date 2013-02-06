@@ -74,4 +74,12 @@ public final class DocumentToGameNumFunctionImplTest
     final Document document = Documents.getDocumentForGameNum(gameNum);
     assertEquals(gameNum, function.getGameNum(document));
   }
+
+  @Test
+  public void getGameNum_GameInMontreal() throws Exception
+  {
+    int gameNum = 5;
+    final Document document = Documents.getDocumentForGameNum(gameNum);
+    assertEquals(gameNum, function.getGameNum(document));
+  }
 }
