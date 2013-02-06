@@ -2,6 +2,7 @@ package com.kblaney.nhl;
 
 public enum FaceOffLocation
 {
-  DEFENSIVE_ZONE,
   NEUTRAL_ZONE,
+  DEFENSIVE_ZONE,
+  OFFENSIVE_ZONE,
 }

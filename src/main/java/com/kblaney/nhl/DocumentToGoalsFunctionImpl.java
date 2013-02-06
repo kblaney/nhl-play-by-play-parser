@@ -2,8 +2,6 @@ package com.kblaney.nhl;
 
 import com.google.common.collect.Lists;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -53,15 +51,8 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
     return tableRowParser.getNumSecondsIntoPeriod(goalTableRow);
   }
 
-  private Team getScoringTeam(Element goalTableRow)
+  private Team getScoringTeam(final Element goalTableRow)
   {
-    final String cellText = goalTableRow.select("td:eq(5)").first().text();
-    final Pattern pattern = Pattern.compile("^(\\S+)");
-    final Matcher matcher = pattern.matcher(cellText);
-    if (matcher.find())
-    {
-      return Team.fromShortForm(matcher.group(1));
-    }
-    throw new IllegalArgumentException("Can't find team:" + goalTableRow);
+    return tableRowParser.getTeam(goalTableRow);
   }
 }

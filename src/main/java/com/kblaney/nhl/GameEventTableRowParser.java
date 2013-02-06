@@ -7,4 +7,6 @@ public interface GameEventTableRowParser
   int getPeriod(Element gameEventTableRow);
 
   int getNumSecondsIntoPeriod(Element gameEventTableRow);
+
+  Team getTeam(Element gameEventTableRow);
 }

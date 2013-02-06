@@ -27,4 +27,17 @@ public class GameEventTableRowParserImpl implements GameEventTableRowParser
     }
     throw new IllegalArgumentException("Can't find elapsed time in period:" + gameEventTableRow);
   }
+
+  @Override
+  public Team getTeam(final Element gameEventTableRow)
+  {
+    final String cellText = gameEventTableRow.select("td:eq(5)").first().text();
+    final Pattern pattern = Pattern.compile("^(\\S+)");
+    final Matcher matcher = pattern.matcher(cellText);
+    if (matcher.find())
+    {
+      return Team.fromShortForm(matcher.group(1));
+    }
+    throw new IllegalArgumentException("Can't find team:" + gameEventTableRow);
+  }
 }

@@ -10,16 +10,17 @@ public final class EntryPoint
   public static void main(final String[] args) throws Exception
   {
     final GameNumToDocumentFunction toDocumentFunction = new GameNumToPlayByPlayDocumentFunction();
-    final DocumentToGoalsFunction toGoalsFunction = new DocumentToGoalsFunctionImpl();
+    final DocumentToFaceOffsFunction toFaceOffsFunction = new DocumentToFaceOffsFunctionImpl();
     int gameNum = 1;
-    final int maxGameNum = 136;
+    final int maxGameNum = 3;
     while (gameNum <= maxGameNum)
     {
       final Document document = toDocumentFunction.getDocument(gameNum);
-      for (final Goal goal : toGoalsFunction.getGoals(document, gameNum))
+      for (final FaceOff faceOff : toFaceOffsFunction.getFaceOffs(document, gameNum))
       {
-        final List<String> fields = Lists.newArrayList(Integer.toString(goal.getGameNum()), goal.getScoringTeam()
-              .toString(), Integer.toString(goal.getPeriod()), Integer.toString(goal.getNumSecondsIntoPeriod()));
+        final List<String> fields = Lists.newArrayList(Integer.toString(faceOff.getGameNum()),
+              Integer.toString(faceOff.getPeriod()), Integer.toString(faceOff.getNumSecondsIntoPeriod()),
+              faceOff.getWinningTeam().toString(), faceOff.getLocation().toString());
         System.out.println(StringUtils.join(fields, ','));
       }
       gameNum++;
