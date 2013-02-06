@@ -1,36 +1,33 @@
 package com.kblaney.nhl;
 
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import com.google.common.collect.Lists;
+import java.util.List;
 
 public final class EntryPoint
 {
   public static void main(final String[] args) throws Exception
   {
-    final GameNumToDocumentFunction toDocumentFunction = new GameNumToPlayByPlayDocumentFunction();
-    final GameEventTableRowParser rowParser = new GameEventTableRowParserImpl();
+    final GameNumToEventsFunction toGoalsAndFaceOffsFunction = new GameNumToGoalsAndFaceOffsFunction();
 
+    final List<GameEvent> goalsAndFaceOffs = Lists.newArrayList();
     int gameNum = 1;
-    final int maxGameNum = 10;
+    final int maxGameNum = 137;
     while (gameNum <= maxGameNum)
     {
-      final Document document = toDocumentFunction.getDocument(gameNum);
-      for (final Element row : document.select("tr.evenColor:has(td:eq(7)"))
-      {
-        final GameEventType eventType = rowParser.getEventType(row);
-        System.out.println("Game " + gameNum + ":" + eventType);
-        if (eventType.equals(GameEventType.GOAL))
-        {
-          final Goal goal = new TableRowToGoalFunction().getGameEvent(row, gameNum);
-          System.out.println(goal);
-        }
-        else if (eventType.equals(GameEventType.FACE_OFF))
-        {
-          final FaceOff faceOff = new TableRowToFaceOffFunction().getGameEvent(row, gameNum);
-          System.out.println(faceOff);
-        }
-      }
+      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(gameNum));
       gameNum++;
     }
+    final int numSeconds = 60;
+    final FaceOffGoalStats stats = new FaceOffGoalStatsWithinNSecondsCalculator(numSeconds)
+          .calculate(goalsAndFaceOffs);
+    System.out.println(stats.getNumFaceOffs(FaceOffLocation.NEUTRAL_ZONE));
+    System.out.println(stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.NEUTRAL_ZONE));
+    System.out.println(stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.NEUTRAL_ZONE));
+    System.out.println(stats.getNumFaceOffs(FaceOffLocation.OFFENSIVE_ZONE));
+    System.out.println(stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.OFFENSIVE_ZONE));
+    System.out.println(stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.OFFENSIVE_ZONE));
+    System.out.println(stats.getNumFaceOffs(FaceOffLocation.DEFENSIVE_ZONE));
+    System.out.println(stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.DEFENSIVE_ZONE));
+    System.out.println(stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.DEFENSIVE_ZONE));
   }
 }
