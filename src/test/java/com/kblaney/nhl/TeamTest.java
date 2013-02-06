@@ -198,4 +198,16 @@ public class TeamTest
       assertEquals("Unknown team short form:XYZ", e.getMessage());
     }
   }
+
+  @Test
+  public void getShortForm_Anaheim()
+  {
+    assertEquals("ANA", Team.ANAHEIM.getShortForm());
+  }
+
+  @Test
+  public void getShortForm_LosAngeles()
+  {
+    assertEquals("L.A", Team.LOS_ANGELES.getShortForm());
+  }
 }

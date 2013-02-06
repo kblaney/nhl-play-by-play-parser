@@ -51,4 +51,9 @@ public enum Team
     }
     throw new IllegalArgumentException("Unknown team short form:" + shortForm);
   }
+
+  public String getShortForm()
+  {
+    return shortForm;
+  }
 }
