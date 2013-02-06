@@ -1,6 +1,7 @@
 package com.kblaney.nhl;
 
 import static org.junit.Assert.*;
+import com.google.common.base.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ public final class FaceOffTest
   private int period;
   private int numSecondsIntoPeriod;
   private FaceOffLocation location;
-  private Team defensiveTeam;
+  private Optional<Team> defensiveTeam;
   private Team winningTeam;
   private FaceOff faceOff;
 
@@ -21,7 +22,7 @@ public final class FaceOffTest
     period = 3;
     numSecondsIntoPeriod = 129;
     location = FaceOffLocation.DEFENSIVE_ZONE;
-    defensiveTeam = Team.ANAHEIM;
+    defensiveTeam = Optional.of(Team.ANAHEIM);
     winningTeam = Team.VANCOUVER;
     faceOff = new FaceOff(gameNum, period, numSecondsIntoPeriod, location, defensiveTeam, winningTeam);
   }
