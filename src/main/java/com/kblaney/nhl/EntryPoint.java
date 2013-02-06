@@ -11,7 +11,7 @@ public final class EntryPoint
     final GameEventTableRowParser rowParser = new GameEventTableRowParserImpl();
 
     int gameNum = 1;
-    final int maxGameNum = 137;
+    final int maxGameNum = 10;
     while (gameNum <= maxGameNum)
     {
       final Document document = toDocumentFunction.getDocument(gameNum);
@@ -22,12 +22,12 @@ public final class EntryPoint
         if (eventType.equals(GameEventType.GOAL))
         {
           final Goal goal = new TableRowToGoalFunction().getGameEvent(row, gameNum);
-          System.out.println("GOAL - Period " + goal.getPeriod() + ":" + goal.getNumSecondsIntoPeriod());
+          System.out.println(goal);
         }
         else if (eventType.equals(GameEventType.FACE_OFF))
         {
           final FaceOff faceOff = new TableRowToFaceOffFunction().getGameEvent(row, gameNum);
-          System.out.println("FACE OFF - Period " + faceOff.getPeriod() + ":" + faceOff.getNumSecondsIntoPeriod());
+          System.out.println(faceOff);
         }
       }
       gameNum++;
