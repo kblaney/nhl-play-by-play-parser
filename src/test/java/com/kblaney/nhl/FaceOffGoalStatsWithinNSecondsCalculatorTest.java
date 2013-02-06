@@ -59,4 +59,22 @@ public final class FaceOffGoalStatsWithinNSecondsCalculatorTest
     assertEquals(0, stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.OFFENSIVE_ZONE));
     assertEquals(0, stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.DEFENSIVE_ZONE));
   }
+
+  @Test
+  public void getGameEvents_Game19Within60Seconds() throws Exception
+  {
+    final int gameNum = 19;
+    final List<GameEvent> goalsAndFaceOffs = GoalsAndFaceOffs.getFor(gameNum);
+    final int numSeconds = 60;
+    final FaceOffGoalStats stats = new FaceOffGoalStatsWithinNSecondsCalculator(numSeconds).calculate(goalsAndFaceOffs);
+    assertEquals(27, stats.getNumFaceOffs(FaceOffLocation.NEUTRAL_ZONE));
+    assertEquals(16, stats.getNumFaceOffs(FaceOffLocation.OFFENSIVE_ZONE));
+    assertEquals(20, stats.getNumFaceOffs(FaceOffLocation.DEFENSIVE_ZONE));
+    assertEquals(1, stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.NEUTRAL_ZONE));
+    assertEquals(1, stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.OFFENSIVE_ZONE));
+    assertEquals(0, stats.getNumFaceOffsWithWinningTeamGoalAfter(FaceOffLocation.DEFENSIVE_ZONE));
+    assertEquals(3, stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.NEUTRAL_ZONE));
+    assertEquals(0, stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.OFFENSIVE_ZONE));
+    assertEquals(2, stats.getNumFaceOffsWithLosingTeamGoalAfter(FaceOffLocation.DEFENSIVE_ZONE));
+  }
 }
