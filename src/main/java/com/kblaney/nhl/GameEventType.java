@@ -13,7 +13,10 @@ public enum GameEventType
   GIVEAWAY("GIVE"),
   TAKEAWAY("TAKE"),
   HIT("HIT"),
-  STOPPAGE_IN_PLAY("STOP");
+  STOPPAGE_IN_PLAY("STOP"),
+  SHOOTOUT_COMPLETE("SOC"),
+  GAME_END("GEND"),
+  GOFF("GOFF");
 
   private final String shortForm;
 

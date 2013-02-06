@@ -7,6 +7,13 @@ import org.jsoup.nodes.Element;
 public class GameEventTableRowParserImpl implements GameEventTableRowParser
 {
   @Override
+  public GameEventType getEventType(final Element gameEventTableRow)
+  {
+    final String eventShortForm = gameEventTableRow.select("td:eq(4)").first().text();
+    return GameEventType.fromShortForm(eventShortForm);
+  }
+
+  @Override
   public int getPeriod(final Element gameEventTableRow)
   {
     final String cellText = gameEventTableRow.select("td:eq(1)").first().text();

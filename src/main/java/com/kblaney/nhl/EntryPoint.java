@@ -1,37 +1,35 @@
 package com.kblaney.nhl;
 
-import com.google.common.collect.Lists;
-import java.io.File;
-import java.io.PrintStream;
-import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 public final class EntryPoint
 {
   public static void main(final String[] args) throws Exception
   {
     final GameNumToDocumentFunction toDocumentFunction = new GameNumToPlayByPlayDocumentFunction();
-    final DocumentToGameFunction toGameFunction = new DocumentToGameFunctionImpl();
+    final GameEventTableRowParser rowParser = new GameEventTableRowParserImpl();
     int gameNum = 1;
-    final int maxGameNum = 136;
-    final PrintStream printStream = new PrintStream(new File("C:/data/vancouverCanucks/nhl-stats/games.csv"));
-    try
+    final int maxGameNum = 137;
+    while (gameNum <= maxGameNum)
     {
-      while (gameNum <= maxGameNum)
+      final Document document = toDocumentFunction.getDocument(gameNum);
+      for (final Element row : document.select("tr.evenColor:has(td:eq(7)"))
       {
-        System.out.println(gameNum);
-        final Document document = toDocumentFunction.getDocument(gameNum);
-        final Game game = toGameFunction.getGame(document);
-        final List<String> fields = Lists.newArrayList(Integer.toString(game.getGameNum()), game.getRoadTeam()
-              .toString(), game.getHomeTeam().toString());
-        printStream.println(StringUtils.join(fields, ','));
-        gameNum++;
+        final GameEventType eventType = rowParser.getEventType(row);
+        System.out.println("Game " + gameNum + ":" + eventType);
+        if (eventType.equals(GameEventType.GOAL))
+        {
+          final Goal goal = new TableRowToGoalFunction().getGameEvent(row, gameNum);
+          System.out.println("GOAL - Period " + goal.getPeriod() + ":" + goal.getNumSecondsIntoPeriod());
+        }
+        else if (eventType.equals(GameEventType.FACE_OFF))
+        {
+          final FaceOff faceOff = new TableRowToFaceOffFunction().getGameEvent(row, gameNum);
+          System.out.println("FACE OFF - Period " + faceOff.getPeriod() + ":" + faceOff.getNumSecondsIntoPeriod());
+        }
       }
-    }
-    finally
-    {
-      printStream.close();
+      gameNum++;
     }
   }
 }

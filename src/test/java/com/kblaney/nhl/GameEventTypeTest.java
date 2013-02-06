@@ -70,4 +70,16 @@ public final class GameEventTypeTest
   {
     assertEquals(GameEventType.STOPPAGE_IN_PLAY, GameEventType.fromShortForm("STOP"));
   }
+
+  @Test
+  public void fromShortForm_ShootoutComplete()
+  {
+    assertEquals(GameEventType.SHOOTOUT_COMPLETE, GameEventType.fromShortForm("SOC"));
+  }
+
+  @Test
+  public void fromShortForm_GameEnd()
+  {
+    assertEquals(GameEventType.GAME_END, GameEventType.fromShortForm("GEND"));
+  }
 }

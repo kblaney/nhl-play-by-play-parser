@@ -17,6 +17,40 @@ public final class GameEventTableRowParserImplTest
   }
 
   @Test
+  public void getEventType_FaceOff()
+  {
+    final Element row = getRowForEventType("FAC");
+    assertEquals(GameEventType.FACE_OFF, parser.getEventType(row));
+  }
+
+  private Element getRowForEventType(final String eventTypeShortForm)
+  {
+    return Jsoup.parseBodyFragment("<table><tr><td/><td/><td/><td/><td>" + eventTypeShortForm + "</td></tr></table>");
+  }
+
+  @Test
+  public void getEventType_Goal()
+  {
+    final Element row = getRowForEventType("GOAL");
+    assertEquals(GameEventType.GOAL, parser.getEventType(row));
+  }
+
+  @Test
+  public void getEventType_InvalidEventTypeShortForm()
+  {
+    final Element row = getRowForEventType("XYZ");
+    try
+    {
+      parser.getEventType(row);
+      fail();
+    }
+    catch (final IllegalArgumentException e)
+    {
+      assertEquals("Unknown game event short form:XYZ", e.getMessage());
+    }
+  }
+
+  @Test
   public void getPeriod_FirstPeriod()
   {
     final int period = 1;
