@@ -12,7 +12,7 @@ public final class EntryPoint
     final GameNumToDocumentFunction toDocumentFunction = new GameNumToPlayByPlayDocumentFunction();
     final DocumentToGoalsFunction toGoalsFunction = new DocumentToGoalsFunctionImpl();
     int gameNum = 1;
-    final int maxGameNum = 3;
+    final int maxGameNum = 136;
     while (gameNum <= maxGameNum)
     {
       final Document document = toDocumentFunction.getDocument(gameNum);

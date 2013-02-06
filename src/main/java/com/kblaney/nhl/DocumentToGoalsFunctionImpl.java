@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 
 public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
 {
+  private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
+
   @Override
   public List<Goal> getGoals(final Document document, final int gameNum)
   {
@@ -43,22 +45,12 @@ public class DocumentToGoalsFunctionImpl implements DocumentToGoalsFunction
 
   private int getPeriod(final Element goalTableRow)
   {
-    final String cellText = goalTableRow.select("td:eq(1)").first().text();
-    return Integer.parseInt(cellText);
+    return tableRowParser.getPeriod(goalTableRow);
   }
 
   private int getNumSecondsIntoPeriod(final Element goalTableRow)
   {
-    final String cellText = goalTableRow.select("td:eq(3)").first().text();
-    final Pattern pattern = Pattern.compile("(\\d+):(\\d+)");
-    final Matcher matcher = pattern.matcher(cellText);
-    if (matcher.find())
-    {
-      final int numMinutes = Integer.parseInt(matcher.group(1));
-      final int numSeconds = Integer.parseInt(matcher.group(2));
-      return (numMinutes * 60) + numSeconds;
-    }
-    throw new IllegalArgumentException("Can't find elapsed time in period:" + goalTableRow);
+    return tableRowParser.getNumSecondsIntoPeriod(goalTableRow);
   }
 
   private Team getScoringTeam(Element goalTableRow)
