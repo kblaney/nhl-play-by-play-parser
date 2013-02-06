@@ -136,4 +136,16 @@ public final class FaceOffTest
     final FaceOff equalFaceOff = new FaceOff(gameNum, period, numSecondsIntoPeriod, location, winningTeam);
     assertEquals(faceOff.hashCode(), equalFaceOff.hashCode());
   }
+
+  @Test
+  public void toString_ThirdPeriodFaceOff()
+  {
+    gameNum = 27;
+    period = 3;
+    numSecondsIntoPeriod = 914;
+    location = FaceOffLocation.DEFENSIVE_ZONE;
+    winningTeam = Team.VANCOUVER;
+    faceOff = new FaceOff(gameNum, period, numSecondsIntoPeriod, location, winningTeam);
+    assertEquals("27,FACE_OFF,3,914,DEFENSIVE_ZONE,VANCOUVER", faceOff.toString());
+  }
 }

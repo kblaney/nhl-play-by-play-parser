@@ -1,5 +1,6 @@
 package com.kblaney.nhl;
 
+import com.google.common.base.Joiner;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
@@ -33,5 +34,11 @@ public final class Goal extends AbstractGameEvent implements GameEvent
   public int hashCode()
   {
     return new HashCodeBuilder().appendSuper(super.hashCode()).append(scoringTeam).toHashCode();
+  }
+
+  @Override
+  public String toString()
+  {
+    return Joiner.on(',').join(super.toCsvString(), scoringTeam);
   }
 }

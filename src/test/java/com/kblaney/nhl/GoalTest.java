@@ -118,4 +118,15 @@ public final class GoalTest
     final Goal equalGoal = new Goal(gameNum, period, numSecondsIntoPeriod, scoringTeam);
     assertEquals(goal.hashCode(), equalGoal.hashCode());
   }
+
+  @Test
+  public void toString_FirstPeriodGoal()
+  {
+    gameNum = 2;
+    period = 3;
+    numSecondsIntoPeriod = 334;
+    scoringTeam = Team.BUFFALO;
+    goal = new Goal(gameNum, period, numSecondsIntoPeriod, scoringTeam);
+    assertEquals("2,GOAL,3,334,BUFFALO", goal.toString());
+  }
 }

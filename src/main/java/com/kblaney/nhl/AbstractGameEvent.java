@@ -1,7 +1,8 @@
 package com.kblaney.nhl;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import com.google.common.base.Joiner;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public abstract class AbstractGameEvent implements GameEvent
 {
@@ -58,5 +59,10 @@ public abstract class AbstractGameEvent implements GameEvent
   public int hashCode()
   {
     return new HashCodeBuilder().append(type).append(gameNum).append(period).append(numSecondsIntoPeriod).toHashCode();
+  }
+
+  protected final String toCsvString()
+  {
+    return Joiner.on(',').join(gameNum, type, period, numSecondsIntoPeriod);
   }
 }

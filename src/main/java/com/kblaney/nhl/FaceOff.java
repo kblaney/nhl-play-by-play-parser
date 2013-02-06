@@ -1,5 +1,6 @@
 package com.kblaney.nhl;
 
+import com.google.common.base.Joiner;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -42,5 +43,11 @@ public final class FaceOff extends AbstractGameEvent implements GameEvent
   public int hashCode()
   {
     return new HashCodeBuilder().appendSuper(super.hashCode()).append(location).append(winningTeam).toHashCode();
+  }
+
+  @Override
+  public String toString()
+  {
+    return Joiner.on(',').join(super.toCsvString(), location, winningTeam);
   }
 }

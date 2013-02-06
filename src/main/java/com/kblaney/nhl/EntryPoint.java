@@ -9,6 +9,7 @@ public final class EntryPoint
   {
     final GameNumToDocumentFunction toDocumentFunction = new GameNumToPlayByPlayDocumentFunction();
     final GameEventTableRowParser rowParser = new GameEventTableRowParserImpl();
+
     int gameNum = 1;
     final int maxGameNum = 137;
     while (gameNum <= maxGameNum)
