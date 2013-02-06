@@ -184,4 +184,18 @@ public class TeamTest
   {
     assertEquals(Team.WINNIPEG, Team.fromShortForm("WPG"));
   }
+
+  @Test
+  public void fromShortForm_UnknownTeamShortForm()
+  {
+    try
+    {
+      Team.fromShortForm("XYZ");
+      fail();
+    }
+    catch (final IllegalArgumentException e)
+    {
+      assertEquals("Unknown team short form:XYZ", e.getMessage());
+    }
+  }
 }

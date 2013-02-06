@@ -38,6 +38,6 @@ public class GameEventTableRowParserImpl implements GameEventTableRowParser
     {
       return Team.fromShortForm(matcher.group(1));
     }
-    throw new IllegalArgumentException("Can't find team:" + gameEventTableRow);
+    throw new IllegalArgumentException("Can't find team short form:" + gameEventTableRow);
   }
 }
