@@ -12,6 +12,12 @@ public class TeamTest
   }
 
   @Test
+  public void fromShortForm_Atlanta()
+  {
+    assertEquals(Team.ATLANTA, Team.fromShortForm("ATL"));
+  }
+
+  @Test
   public void fromShortForm_Boston()
   {
     assertEquals(Team.BOSTON, Team.fromShortForm("BOS"));

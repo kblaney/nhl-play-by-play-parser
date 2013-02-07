@@ -3,6 +3,7 @@ package com.kblaney.nhl;
 public enum Team
 {
   ANAHEIM("ANA"),
+  ATLANTA("ATL"),
   BOSTON("BOS"),
   BUFFALO("BUF"),
   CALGARY("CGY"),
