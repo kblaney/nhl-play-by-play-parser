@@ -21,9 +21,10 @@ public final class GameNumToGoalsAndFaceOffsFunctionTest
   @Test
   public void getGameEvents_Game19() throws Exception
   {
+    final Season season = Season.REGULAR_SEASON_2012_2013;
     final int gameNum = 19;
-    when(toDocumentFunction.getDocument(gameNum)).thenReturn(Documents.getDocumentForGameNum(gameNum));
-    final List<GameEvent> goalsAndFaceOffs = function.getGameEvents(gameNum);
+    when(toDocumentFunction.getDocument(season, gameNum)).thenReturn(Documents.getDocumentForGameNum(gameNum));
+    final List<GameEvent> goalsAndFaceOffs = function.getGameEvents(season, gameNum);
     assertEquals(73, goalsAndFaceOffs.size());
   }
 }

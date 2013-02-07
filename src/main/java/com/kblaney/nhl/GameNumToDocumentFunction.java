@@ -5,5 +5,5 @@ import org.jsoup.nodes.Document;
 
 interface GameNumToDocumentFunction
 {
-  Document getDocument(int gameNum) throws IOException;
+  Document getDocument(Season season, int gameNum) throws IOException;
 }

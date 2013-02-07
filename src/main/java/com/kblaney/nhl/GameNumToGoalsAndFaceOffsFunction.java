@@ -24,11 +24,11 @@ public final class GameNumToGoalsAndFaceOffsFunction implements GameNumToEventsF
   }
 
   @Override
-  public List<GameEvent> getGameEvents(final int gameNum) throws IOException
+  public List<GameEvent> getGameEvents(final Season season, final int gameNum) throws IOException
   {
     final List<GameEvent> gameEvents = Lists.newArrayList();
 
-    final Document document = toDocumentFunction.getDocument(gameNum);
+    final Document document = toDocumentFunction.getDocument(season, gameNum);
     for (final Element row : document.select("tr.evenColor:has(td:eq(7)"))
     {
       final GameEventType eventType = rowParser.getEventType(row);

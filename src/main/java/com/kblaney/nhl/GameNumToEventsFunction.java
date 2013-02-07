@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface GameNumToEventsFunction
 {
-  List<GameEvent> getGameEvents(int gameNum) throws IOException;
+  List<GameEvent> getGameEvents(Season season, int gameNum) throws IOException;
 }

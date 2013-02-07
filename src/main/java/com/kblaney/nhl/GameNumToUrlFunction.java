@@ -2,5 +2,5 @@ package com.kblaney.nhl;
 
 interface GameNumToUrlFunction
 {
-  String getUrl(int gameNum);
+  String getUrl(Season season, int gameNum);
 }

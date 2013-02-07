@@ -21,7 +21,7 @@ public final class EntryPoint
     final int maxGameNum = 137;
     while (gameNum <= maxGameNum)
     {
-      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(gameNum));
+      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(Season.REGULAR_SEASON_2012_2013, gameNum));
       gameNum++;
     }
     return goalsAndFaceOffs;
