@@ -1,5 +1,6 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.Season;
 import java.io.IOException;
 import org.jsoup.nodes.Document;
 

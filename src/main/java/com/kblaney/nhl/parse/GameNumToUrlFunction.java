@@ -1,4 +1,6 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
+
+import com.kblaney.nhl.Season;
 
 interface GameNumToUrlFunction
 {

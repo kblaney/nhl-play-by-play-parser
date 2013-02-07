@@ -1,8 +1,10 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.Goal;
+import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Element;
 
-public class TableRowToGoalFunction implements TableRowToGameEventFunction<Goal>
+class TableRowToGoalFunction implements TableRowToGameEventFunction<Goal>
 {
   private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
 

@@ -1,6 +1,7 @@
 package com.kblaney.nhl;
 
 import static org.junit.Assert.*;
+import com.kblaney.nhl.parse.GoalsAndFaceOffs;
 import java.util.List;
 import org.junit.Test;
 

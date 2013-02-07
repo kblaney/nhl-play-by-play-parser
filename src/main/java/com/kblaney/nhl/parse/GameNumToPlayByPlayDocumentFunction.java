@@ -1,7 +1,8 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
-import org.jsoup.Jsoup;
+import com.kblaney.nhl.Season;
 import java.io.IOException;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 final class GameNumToPlayByPlayDocumentFunction implements GameNumToDocumentFunction

@@ -1,6 +1,7 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import static org.junit.Assert.*;
+import com.kblaney.nhl.Season;
 import org.junit.Before;
 import org.junit.Test;
 

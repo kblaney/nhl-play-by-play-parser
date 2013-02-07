@@ -1,5 +1,7 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.GameEvent;
+import com.kblaney.nhl.Season;
 import java.io.IOException;
 import java.util.List;
 

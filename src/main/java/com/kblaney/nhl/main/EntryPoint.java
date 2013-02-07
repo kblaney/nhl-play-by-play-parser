@@ -1,7 +1,14 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.main;
 
-import java.io.IOException;
 import com.google.common.collect.Lists;
+import com.kblaney.nhl.FaceOffGoalStats;
+import com.kblaney.nhl.FaceOffGoalStatsWithinNSecondsCalculator;
+import com.kblaney.nhl.FaceOffLocation;
+import com.kblaney.nhl.GameEvent;
+import com.kblaney.nhl.Season;
+import com.kblaney.nhl.parse.GameNumToEventsFunction;
+import com.kblaney.nhl.parse.GameNumToGoalsAndFaceOffsFunction;
+import java.io.IOException;
 import java.util.List;
 
 public final class EntryPoint

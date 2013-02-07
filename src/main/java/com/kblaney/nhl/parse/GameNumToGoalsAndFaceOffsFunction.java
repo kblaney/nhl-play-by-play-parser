@@ -1,10 +1,15 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import com.google.common.collect.Lists;
+import com.kblaney.nhl.FaceOff;
+import com.kblaney.nhl.GameEvent;
+import com.kblaney.nhl.GameEventType;
+import com.kblaney.nhl.Goal;
+import com.kblaney.nhl.Season;
 import java.io.IOException;
+import java.util.List;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import java.util.List;
 
 public final class GameNumToGoalsAndFaceOffsFunction implements GameNumToEventsFunction
 {

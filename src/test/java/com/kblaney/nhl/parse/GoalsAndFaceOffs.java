@@ -1,6 +1,9 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import static org.mockito.Mockito.*;
+import com.kblaney.nhl.Documents;
+import com.kblaney.nhl.GameEvent;
+import com.kblaney.nhl.Season;
 import java.util.List;
 
 public class GoalsAndFaceOffs

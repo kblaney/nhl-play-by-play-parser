@@ -1,8 +1,10 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.GameEventType;
+import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Element;
 
-public interface GameEventTableRowParser
+interface GameEventTableRowParser
 {
   GameEventType getEventType(Element gameEventTableRow);
 

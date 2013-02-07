@@ -1,6 +1,8 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
-public final class GameNumToPlayByPlayUrlFunction implements GameNumToUrlFunction
+import com.kblaney.nhl.Season;
+
+final class GameNumToPlayByPlayUrlFunction implements GameNumToUrlFunction
 {
   @Override
   public String getUrl(final Season season, final int gameNum)

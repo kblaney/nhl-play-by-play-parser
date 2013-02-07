@@ -1,8 +1,11 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.FaceOff;
+import com.kblaney.nhl.FaceOffLocation;
+import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Element;
 
-public class TableRowToFaceOffFunction implements TableRowToGameEventFunction<FaceOff>
+class TableRowToFaceOffFunction implements TableRowToGameEventFunction<FaceOff>
 {
   private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
 

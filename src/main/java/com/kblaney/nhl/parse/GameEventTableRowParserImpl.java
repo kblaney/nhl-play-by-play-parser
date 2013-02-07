@@ -1,10 +1,12 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.GameEventType;
+import com.kblaney.nhl.Team;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.nodes.Element;
 
-public class GameEventTableRowParserImpl implements GameEventTableRowParser
+class GameEventTableRowParserImpl implements GameEventTableRowParser
 {
   @Override
   public GameEventType getEventType(final Element gameEventTableRow)

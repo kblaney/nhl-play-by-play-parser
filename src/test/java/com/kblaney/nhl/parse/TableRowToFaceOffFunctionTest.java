@@ -1,10 +1,13 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import static org.junit.Assert.*;
-import org.jsoup.nodes.Element;
+import com.kblaney.nhl.FaceOff;
+import com.kblaney.nhl.FaceOffLocation;
+import com.kblaney.nhl.Team;
 import org.jsoup.Jsoup;
-import org.junit.Test;
+import org.jsoup.nodes.Element;
 import org.junit.Before;
+import org.junit.Test;
 
 public final class TableRowToFaceOffFunctionTest
 {
