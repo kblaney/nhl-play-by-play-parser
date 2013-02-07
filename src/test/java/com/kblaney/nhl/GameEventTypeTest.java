@@ -82,4 +82,22 @@ public final class GameEventTypeTest
   {
     assertEquals(GameEventType.GAME_END, GameEventType.fromShortForm("GEND"));
   }
+
+  @Test
+  public void fromShortForm_EarlyIntermissionStart()
+  {
+    assertEquals(GameEventType.EARLY_INTERISSION_START, GameEventType.fromShortForm("EISTR"));
+  }
+
+  @Test
+  public void fromShortForm_EarlyIntermissionEnd()
+  {
+    assertEquals(GameEventType.EARLY_INTERISSION_END, GameEventType.fromShortForm("EIEND"));
+  }
+
+  @Test
+  public void fromShortForm_Goff()
+  {
+    assertEquals(GameEventType.GOFF, GameEventType.fromShortForm("GOFF"));
+  }
 }
