@@ -18,10 +18,11 @@ public final class EntryPoint
     final GameNumToEventsFunction toGoalsAndFaceOffsFunction = new GameNumToGoalsAndFaceOffsFunction();
     final List<GameEvent> goalsAndFaceOffs = Lists.newArrayList();
     int gameNum = 1;
-    final int maxGameNum = 137;
+    final int maxGameNum = 1230;
     while (gameNum <= maxGameNum)
     {
-      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(Season.REGULAR_SEASON_2012_2013, gameNum));
+      System.out.println(gameNum);
+      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(Season.REGULAR_SEASON_2011_2012, gameNum));
       gameNum++;
     }
     return goalsAndFaceOffs;
