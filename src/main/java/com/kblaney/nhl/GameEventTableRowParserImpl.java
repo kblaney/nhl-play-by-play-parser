@@ -30,7 +30,8 @@ public class GameEventTableRowParserImpl implements GameEventTableRowParser
     {
       final int numMinutes = Integer.parseInt(matcher.group(1));
       final int numSeconds = Integer.parseInt(matcher.group(2));
-      return (numMinutes * 60) + numSeconds;
+      final int numSecondsPerMinute = 60;
+      return (numMinutes * numSecondsPerMinute) + numSeconds;
     }
     throw new IllegalArgumentException("Can't find elapsed time in period:" + gameEventTableRow);
   }
