@@ -1,6 +1,7 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import static org.junit.Assert.*;
+import com.kblaney.nhl.Documents;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Before;

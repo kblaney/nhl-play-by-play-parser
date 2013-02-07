@@ -1,9 +1,12 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import static org.junit.Assert.*;
+import com.kblaney.nhl.Documents;
+import com.kblaney.nhl.Game;
+import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Document;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
 public final class DocumentToGameFunctionImplTest
 {

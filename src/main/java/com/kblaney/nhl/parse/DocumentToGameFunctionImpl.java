@@ -1,5 +1,7 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.Game;
+import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Document;
 
 public final class DocumentToGameFunctionImpl implements DocumentToGameFunction

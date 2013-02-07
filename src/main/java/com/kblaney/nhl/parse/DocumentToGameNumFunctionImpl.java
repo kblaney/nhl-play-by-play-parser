@@ -1,11 +1,11 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-public class DocumentToGameNumFunctionImpl implements DocumentToGameNumFunction
+class DocumentToGameNumFunctionImpl implements DocumentToGameNumFunction
 {
   @Override
   public int getGameNum(final Document document)

@@ -1,11 +1,12 @@
-package com.kblaney.nhl;
+package com.kblaney.nhl.parse;
 
+import com.kblaney.nhl.Team;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.jsoup.select.Elements;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
-public final class DocumentToHomeTeamFunction implements DocumentToTeamFunction
+final class DocumentToHomeTeamFunction implements DocumentToTeamFunction
 {
   @Override
   public Team getTeam(final Document document)
