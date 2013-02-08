@@ -1,7 +1,6 @@
 package com.kblaney.nhl.parse;
 
 import com.google.common.collect.Lists;
-import com.kblaney.nhl.FaceOff;
 import com.kblaney.nhl.GameEvent;
 import com.kblaney.nhl.GameEventType;
 import com.kblaney.nhl.Goal;
@@ -16,7 +15,7 @@ public final class GameNumToGoalsAndFaceOffsFunction implements GameNumToEventsF
   private final GameNumToDocumentFunction toDocumentFunction;
   private final GameEventTableRowParser rowParser = new GameEventTableRowParserImpl();
   private final TableRowToGameEventFunction<Goal> toGoalFunction = new TableRowToGoalFunction();
-  private final TableRowToGameEventFunction<FaceOff> toFaceOffFunction = new TableRowToFaceOffFunction();
+  private final TableRowFaceOffParserImpl faceOffRowParser = new TableRowFaceOffParserImpl();
 
   public GameNumToGoalsAndFaceOffsFunction()
   {
@@ -43,7 +42,10 @@ public final class GameNumToGoalsAndFaceOffsFunction implements GameNumToEventsF
       }
       else if (eventType.equals(GameEventType.FACE_OFF))
       {
-        gameEvents.add(toFaceOffFunction.getGameEvent(row, gameNum));
+        if (faceOffRowParser.doesFaceOffHaveWinner(row))
+        {
+          gameEvents.add(faceOffRowParser.getGameEvent(row, gameNum));
+        }
       }
     }
     return gameEvents;

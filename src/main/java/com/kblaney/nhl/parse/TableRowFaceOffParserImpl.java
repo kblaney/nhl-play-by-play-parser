@@ -5,7 +5,7 @@ import com.kblaney.nhl.FaceOffLocation;
 import com.kblaney.nhl.Team;
 import org.jsoup.nodes.Element;
 
-class TableRowToFaceOffFunction implements TableRowToGameEventFunction<FaceOff>
+class TableRowFaceOffParserImpl implements TableRowToGameEventFunction<FaceOff>, TableRowFaceOffParser
 {
   private final GameEventTableRowParser tableRowParser = new GameEventTableRowParserImpl();
 
@@ -49,5 +49,11 @@ class TableRowToFaceOffFunction implements TableRowToGameEventFunction<FaceOff>
   private Team getWinningTeam(final Element tableRow)
   {
     return tableRowParser.getTeam(tableRow);
+  }
+
+  @Override
+  public boolean doesFaceOffHaveWinner(final Element faceOffTableRow)
+  {
+    return faceOffTableRow.text().contains("won ");
   }
 }
