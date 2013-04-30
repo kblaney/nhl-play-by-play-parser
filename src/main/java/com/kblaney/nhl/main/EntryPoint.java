@@ -29,7 +29,7 @@ public final class EntryPoint
     while (gameNum <= maxGameNum)
     {
       System.out.println(gameNum);
-      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(Season.REGULAR_SEASON_2008_2009, gameNum));
+      goalsAndFaceOffs.addAll(toGoalsAndFaceOffsFunction.getGameEvents(Season.REGULAR_SEASON_2007_2008, gameNum));
       gameNum++;
     }
     return goalsAndFaceOffs;
